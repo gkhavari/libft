@@ -1,4 +1,4 @@
-void	*ft_bzero(void *str, size_t n)
+void	ft_bzero(void *str, size_t n)
 {
-	return (ft_memset(str, 0, n));
+	str = ft_memset(str, 0, n);
 }
