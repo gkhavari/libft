@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 static int	count_words(char *str, char c)
 {
 	int	i;
@@ -83,7 +85,7 @@ static void	write_split(char **dest, char *str, char c)
 	}
 }
 
-char	**ft_split(const char *str, char c)
+char	**ft_split(char const *str, char c)
 {
 	char	**dest;
 	int		words;

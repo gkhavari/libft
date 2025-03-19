@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 static char	*edge_case(char *s1, char *s2)
 {
 	if (s1 == NULL && s2 == NULL)
