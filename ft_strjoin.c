@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*edge_case(char *s1, char *s2)
+static char	*edge_case(char *s1, char *s2)
 {
 	if (s1 == NULL && s2 == NULL)
 		return (ft_strdup(""));
