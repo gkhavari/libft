@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*edge_cases(int n)
+static char	*edge_cases(int n)
 {
 	char	*str;
 
@@ -33,7 +33,7 @@ char	*edge_cases(int n)
 	return (NULL);
 }
 
-size_t	calc_num_len(int n)
+static size_t	calc_num_len(int n)
 {
 	size_t	num_len;
 
