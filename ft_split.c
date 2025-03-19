@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	count_words(char *str, char c)
+static int	count_words(char *str, char c)
 {
 	int	i;
 	int	words;
@@ -31,7 +31,7 @@ int	count_words(char *str, char c)
 	return (words);
 }
 
-void	write_words(char *dest, char *src, char c)
+static void	write_words(char *dest, char *src, char c)
 {
 	int	i;
 
@@ -44,7 +44,7 @@ void	write_words(char *dest, char *src, char c)
 	dest[i] = '\0';
 }
 
-void	free_all(char **dest, int words)
+static void	free_all(char **dest, int words)
 {
 	while (words > 0)
 	{
@@ -54,7 +54,7 @@ void	free_all(char **dest, int words)
 	free(dest);
 }
 
-void	write_split(char **dest, char *str, char c)
+static void	write_split(char **dest, char *str, char c)
 {
 	int	i;
 	int	word_len;
