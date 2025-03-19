@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	edge_case(int sign)
+static int	edge_case(int sign)
 {
 	if (sign == 1)
 		return (2147483647);
