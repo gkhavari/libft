@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	is_in_set(char c, char *set)
+static int	is_in_set(char c, char *set)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ int	is_in_set(char c, char *set)
 	return (0);
 }
 
-char	*edge_cases(char *s1, char *set)
+static char	*edge_cases(char *s1, char *set)
 {
 	if (s1 == NULL)
 		return (NULL);
