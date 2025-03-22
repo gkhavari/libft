@@ -1,6 +1,6 @@
 #include "libft.h"
 
-void	*reverse_copy(char *dest, char *src, size_t len)
+void	*reverse_copy(char *dest, const char *src, size_t len)
 {
 	while (len > 0)
 	{
@@ -10,7 +10,7 @@ void	*reverse_copy(char *dest, char *src, size_t len)
 	return ((void *)dest);
 }
 
-void	*normal_copy(char *dest, char *src)
+void	*normal_copy(char *dest, const char *src)
 {
 	size_t	i;
 
@@ -23,7 +23,7 @@ void	*normal_copy(char *dest, char *src)
 	return ((void *)dest);
 }
 
-void	*ft_memmove(void *dest, void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
 	if (dest == NULL || src == NULL)
 		return (NULL);
