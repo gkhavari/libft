@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static char	*edge_case(char *s1, char *s2)
+static char	*edge_case(const char *s1, const char *s2)
 {
 	if (s1 == NULL && s2 == NULL)
 		return (ft_strdup(""));
@@ -20,6 +20,7 @@ static char	*edge_case(char *s1, char *s2)
 		return (ft_strdup(s2));
 	if (s2 == NULL)
 		return (ft_strdup(s1));
+	return (NULL);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

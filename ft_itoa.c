@@ -12,6 +12,19 @@
 
 #include "libft.h"
 
+static char	*ft_strcpy(char *dest, const char *src)
+{
+	char	*dest_ptr = dest;
+	while (*src)
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
+	return (dest_ptr);
+}
+
 static char	*edge_cases(int n)
 {
 	char	*str;

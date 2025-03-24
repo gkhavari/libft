@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	count_words(char *str, char c)
+static int	count_words(const char *str, char c)
 {
 	int	i;
 	int	words;
@@ -33,7 +33,7 @@ static int	count_words(char *str, char c)
 	return (words);
 }
 
-static void	write_words(char *dest, char *src, char c)
+static void	write_words(char *dest, const char *src, char c)
 {
 	int	i;
 
@@ -56,7 +56,7 @@ static void	free_all(char **dest, int words)
 	free(dest);
 }
 
-static void	write_split(char **dest, char *str, char c)
+static void	write_split(char **dest, const char *str, char c)
 {
 	int	i;
 	int	word_len;

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	is_in_set(char c, char *set)
+static int	is_in_set(const char c, const char *set)
 {
 	size_t	i;
 
@@ -26,12 +26,13 @@ static int	is_in_set(char c, char *set)
 	return (0);
 }
 
-static char	*edge_cases(char *s1, char *set)
+static char	*edge_cases(const char *s1, const char *set)
 {
 	if (s1 == NULL)
 		return (NULL);
 	if (set == NULL || set[0] == '\0')
 		return (ft_strdup(s1));
+	return (NULL);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)

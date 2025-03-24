@@ -2,6 +2,8 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
+	int	digit;
+
 	if (n == -2147483648)
 	{
 		write(fd, "-2", 2);
@@ -19,5 +21,6 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	if (n > 9)
 		ft_putnbr_fd(n / 10, fd);
-	write(fd, &(n % 10 + '0'), 1);
+	digit = n % 10 + '0';
+	write(fd, &digit, 1);
 }
