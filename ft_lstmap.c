@@ -1,4 +1,16 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gkhavari <gkhavari@student.42vienna.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/22 13:55:34 by gkhavari          #+#    #+#             */
+/*   Updated: 2025/04/22 13:55:36 by gkhavari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft_bonus.h"
 
 static void	free_lst_man(t_list *lst)
 {
@@ -8,7 +20,7 @@ static void	free_lst_man(t_list *lst)
 	{
 		temp = lst;
 		lst = lst -> next;
-		if (temp -> context != NULL)
+		if (temp -> content != NULL)
 			free(temp -> content);
 		free(temp);
 	}
@@ -25,7 +37,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	new_element = NULL;
 	while (lst)
 	{
-		new_element = ft_listnew(f(lst -> content));
+		new_element = (t_list *)ft_lstnew(f(lst -> content));
 		if (new_element == NULL)
 		{
 			if (del != NULL)

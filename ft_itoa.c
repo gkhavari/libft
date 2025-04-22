@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gkhavari <gkhavari@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/15 18:52:45 by ubuntu            #+#    #+#             */
-/*   Updated: 2025/03/16 16:24:24 by ubuntu           ###   ########.fr       */
+/*   Created: 2025/04/22 13:53:29 by gkhavari          #+#    #+#             */
+/*   Updated: 2025/04/22 14:05:27 by gkhavari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static char	*ft_strcpy(char *dest, const char *src)
 {
-	char	*dest_ptr = dest;
+	char	*dest_ptr;
+
+	dest_ptr = dest;
 	while (*src)
 	{
 		*dest = *src;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gkhavari <gkhavari@student.42vienna.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/15 18:53:25 by ubuntu            #+#    #+#             */
-/*   Updated: 2025/03/16 16:20:45 by ubuntu           ###   ########.fr       */
+/*   Created: 2025/04/22 14:00:53 by gkhavari          #+#    #+#             */
+/*   Updated: 2025/04/22 14:00:55 by gkhavari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	size_t	i;
 
 	i = 0;
+	if (size == 0)
+		return (ft_strlen(src));
 	if (src == NULL)
 		return (0);
 	if (dest == NULL)
