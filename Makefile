@@ -16,7 +16,7 @@ OBJSBONUS = ${BONUS:.c=.o}
 CC		= cc
 RM		= rm -f
 
-CFLAGS = -Wall -Wextra -Werror -I
+CFLAGS = -Wall -Wextra -Werror
 
 .c.o:
 		${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
