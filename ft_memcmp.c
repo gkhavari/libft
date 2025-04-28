@@ -49,7 +49,8 @@ typedef struct TestCase {
 
 void	test_memcmp(TestCase *test_case)
 {
-		if (ft_memcmp(test_case->str1, test_case->str2, test_case->size) == memcmp(test_case->str1, test_case->str2, test_case->size))
+		if (ft_memcmp(test_case->str1, test_case->str2, test_case->size) == 
+		memcmp(test_case->str1, test_case->str2, test_case->size))
 			printf("Test passed!\n");
 		else
 			printf("Test failed!\n");
