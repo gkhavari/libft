@@ -40,7 +40,8 @@ typedef struct TestCase {
 
 void	test_strrchr(TestCase *test_case)
 {
-		if (ft_strrchr(test_case->str, test_case->to_find) == strrchr(test_case->str, test_case->to_find))
+		if (ft_strrchr(test_case->str, test_case->to_find) 
+		== strrchr(test_case->str, test_case->to_find))
 			printf("Test passed!\n");
 		else
 			printf("Test failed!\n");
