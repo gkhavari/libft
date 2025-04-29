@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	count_words(const char *str, char c)
+static size_t	count_words(const char *str, char c)
 {
 	int	i;
 	int	words;
@@ -93,12 +93,55 @@ char	**ft_split(char const *str, char c)
 	if (str == NULL || str[0] == '\0')
 		return (NULL);
 	words = count_words(str, c);
-	if (words == 0)
-		return (NULL);
 	dest = (char **)malloc(sizeof(char *) * (words + 1));
 	if (dest == NULL)
 		return (NULL);
+	if (words == 0)
+	{
+		dest = NULL;
+		return (dest);
+	}
 	write_split(dest, str, c);
 	dest[words] = NULL;
 	return (dest);
 }
+/*
+#include <stdio.h>
+
+typedef struct TestCase{
+	char str[1024];
+	char split;
+}TestCase;
+
+int main(void)
+{
+	TestCase test_cases[] = {
+		{ .str = "          " , .split = ' ' },
+		{ .str = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse" , .split = ' ' },
+		{ .str = "   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   " , .split = ' '},
+		{ .str = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi." , .split = 'i' },
+		{ .str = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi." , .split = 'z'},
+		{ .str = "" , .split = 'z' }
+	};
+
+	size_t num_of_tests = sizeof(test_cases) / sizeof(test_cases[0]);
+	size_t i = 0;
+	while (i < num_of_tests)
+	{
+		printf("Start of test %zu\n", i+1);
+		char **arr = ft_split(test_cases[i].str, test_cases[i].split);
+		size_t j = 0;
+		printf("String: %s\n", test_cases[i].str);
+		printf("Delimiter: %c\n", test_cases[i].split);
+		size_t words = count_words(test_cases[i].str, test_cases[i].split);
+		if (words == 0)
+			printf("Split: %s\n", arr[0]);
+		while (j < words)
+		{
+			printf("Split: %s\n", arr[j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}*/
