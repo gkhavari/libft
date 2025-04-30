@@ -14,95 +14,73 @@
 
 static size_t	count_words(const char *str, char c)
 {
-	int	i;
-	int	words;
+	size_t	words;
+	size_t	index;
 
-	i = 0;
 	words = 0;
-	while (str[i])
+	index = 0;
+	if (str == NULL)
+		return (0);
+	while (str[index])
 	{
-		while (str[i] == c && str[i] != '\0')
-			i++;
-		if (str[i] != '\0')
-		{
+		while (str[index] == c)
+			index++;
+		if (str[index] != '\0')
 			words++;
-			while (str[i] != '\0' && str[i] != c)
-				i++;
-		}
+		while (str[index] != '\0' && str[index] != c)
+			index++;
 	}
 	return (words);
 }
 
-static void	write_words(char *dest, const char *src, char c)
+static void	free_all(char **dest)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (src[i] != c && src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-}
-
-static void	free_all(char **dest, int words)
-{
-	while (words > 0)
-	{
-		free(dest[words - 1]);
-		words--;
-	}
+	while (dest[i])
+		free(dest[i++]);
 	free(dest);
 }
 
-static void	write_split(char **dest, const char *str, char c)
+static int	write_split(char ***dest, const char *str, const char c)
 {
-	int	i;
-	int	word_len;
-	int	words;
+	size_t	word_len;
+	size_t	j;
 
-	i = 0;
-	words = 0;
-	while (str[i] != '\0')
+	j = 0;
+	while (*str)
 	{
-		if (str[i] == c)
-			i++;
-		if (str[i] != '\0')
+		while (str && *str == c)
+			str++;
+		if (*str)
 		{
-			word_len = 0;
-			while (str[i + word_len] != c && str[i + word_len])
-				word_len++;
-			dest[words] = (char *)malloc(sizeof(char) * (word_len + 1));
-			if (dest[words] == NULL)
+			if (!ft_strchr(str, c))
+				word_len = ft_strlen(str);
+			else
+				word_len = ft_strchr(str, c) - str;
+			(*dest)[j++] = ft_substr(str, 0, word_len);
+			if ((*dest)[j - 1] == NULL)
 			{
-				free_all(dest, words);
-				return ;
+				free_all(*dest);
+				return (0);
 			}
-			write_words(dest[words++], &str[i], c);
-			i = i + word_len;
+			str = str + word_len;
 		}
 	}
+	(*dest)[j] = NULL;
+	return (1);
 }
 
 char	**ft_split(char const *str, char c)
 {
 	char	**dest;
-	int		words;
 
-	if (str == NULL || str[0] == '\0')
-		return (NULL);
-	words = count_words(str, c);
-	dest = (char **)malloc(sizeof(char *) * (words + 1));
+	dest = (char **)malloc(sizeof(char *) * (count_words(str, c) + 1));
 	if (dest == NULL)
 		return (NULL);
-	if (words == 0)
-	{
-		dest = NULL;
-		return (dest);
-	}
-	write_split(dest, str, c);
-	dest[words] = NULL;
+	if (!write_split(&dest, str, c))
+		return (NULL);
 	return (dest);
 }
 /*
@@ -117,10 +95,20 @@ int main(void)
 {
 	TestCase test_cases[] = {
 		{ .str = "          " , .split = ' ' },
-		{ .str = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse" , .split = ' ' },
-		{ .str = "   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   " , .split = ' '},
-		{ .str = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi." , .split = 'i' },
-		{ .str = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi." , .split = 'z'},
+		{ .str = "lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+		Sed non risus. Suspendisse" , .split = ' ' },
+		{ .str = "   lorem   ipsum dolor     sit amet, consectetur   \
+		adipiscing elit. Sed non risus. Suspendisse   " , .split = ' '},
+		{ .str = "lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+		Sed non risus. Suspendisse lectus tortor, dignissim sit amet, \
+		adipiscing nec, ultricies sed, dolor. Cras elementum ultricies \
+		diam. Maecenas ligula massa, varius a, semper congue, euismod \
+		non, mi." , .split = 'i' },
+		{ .str = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed \
+		non risus. Suspendisse lectus tortor, dignissim sit amet, \
+		adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. \
+		Maecenas ligula massa, varius a, semper congue, euismod non, \
+		mi." , .split = 'z'},
 		{ .str = "" , .split = 'z' }
 	};
 
